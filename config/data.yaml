@@ -1,0 +1,20 @@
+embedding_size: 64
+inter_matrix_type: "01"
+spmm: "spmm" # spmm, off
+
+# fix LightGCN
+n_layers: 3
+reg_weight: 1e-5
+learning_rate: 1e-4
+
+# Denoising
+prune_threshold: 0.02
+
+# MIM
+aug_ratio: 0.1
+MIM_weight: 1e-06
+tau: 0.2
+
+# fix perturb
+ptb_strategy: "None" # "replace" "None"
+ptb_prop: 0.05
