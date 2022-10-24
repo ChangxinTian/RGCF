@@ -1,20 +1,26 @@
-embedding_size: 64
-inter_matrix_type: "01"
-spmm: "spmm" # spmm, off
+dataset: ml-1m
 
-# fix LightGCN
-n_layers: 3
-reg_weight: 1e-5
-learning_rate: 1e-4
+# dataset config
+field_separator: "\t"
+seq_separator: " "
+USER_ID_FIELD: user_id
+ITEM_ID_FIELD: item_id
+RATING_FIELD: rating
+NEG_PREFIX: neg_
+LABEL_FIELD: label
+load_col:
+  inter: [user_id, item_id, rating]
+  item: [item_id, genre]
+val_interval:
+  rating: "[3,inf)"
 
-# Denoising
-prune_threshold: 0.02
+# training and evaluation
+epochs: 500
+train_batch_size: 4096
+metrics: ["Recall", "MRR", "NDCG", "Hit"]
+valid_metric: MRR@10
+training_neg_sample_num: 1
+topk: [10, 20, 50]
+eval_batch_size: 1000000
 
-# MIM
-aug_ratio: 0.1
-MIM_weight: 1e-06
-tau: 0.2
-
-# fix perturb
-ptb_strategy: "None" # "replace" "None"
-ptb_prop: 0.05
+show_progress: False
